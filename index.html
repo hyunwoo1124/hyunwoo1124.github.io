@@ -3,238 +3,687 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio.</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <title>Kevin Hyun Woo Kim - Senior Threat Detection Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(59, 130, 246, 0.5);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.8);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Experience Section */
+        .experience-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .experience-card h3 {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #808080;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .experience-card p {
+            color: #c0c0c0;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlight-list li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            color: #d0d0d0;
+        }
+
+        .highlight-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+
+        /* Certifications Grid */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .cert-item h4 {
+            color: #60a5fa;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .project-card h3 {
+            color: #3b82f6;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #c0c0c0;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #60a5fa;
+            transform: translateX(5px);
+        }
+
+        /* Objectives Section */
+        .objectives-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .objectives-content p {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            line-height: 1.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #808080;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cert-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="loading">
-        <div id="spinner"></div>
-    </div>
-    <div id="header" class="animated slideInDown" style="animation-delay:1.8s;">
-    <div id="title">Portfolio</div><br>
-    <div id="links">
-        <a href="#aboutme">About me</a>
-        <a href="#certificates">Certification</a>
-        <a href="#work">Projects</a>
-        <a href="#currentObj">Objective</a>
-        <a href="#ctf">CTF</a>
-        <a href="#contact">Contact</a>
-        
-    </div>
-    </div>
-
-    <center>
-    <div id="middle">
-        <div id="tagline" class="animated zoomIn" style="animation-delay:1.8s;">
-      
-          
-            Hyun Woo (Kevin) Kim<br>
-           <a href="https://drive.google.com/file/d/1g8AkRjnAh9DedcqO3E8NrfR3-ww-ZQYX/view?usp=sharing"><button class="btn_one">Resume</button></a>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">KHK</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#objective">Objective</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </div>
-    </div>
-    </center>
+    </nav>
 
-    <div id="portfolio">
-        
-             <div id = "tryhackme">
-                 <h1>TryHackMe</h1>
-                 <p>
-                    <script src="https://tryhackme.com/badge/164569"></script>
-                    <ul></ul>
-                        <li>
-                            View my achievements in TryHackMe. 
-                        </li>
-                 </p>
-             </div>
-             <div id ="aboutme">
-                 <h1>About Me.</h1>
-                 <body>
-                    <h2>Currently at DeepSeas...</h2>
-                    <p><strong>I am a Threat Detection Engineer and Technical Consultant entrusted with creating a <span style="color: #007BFF;">Detection Engineer Program</span> for clients, aimed at fully optimizing their Detection Program life cycle. My expertise lies in conducting <span style="color: #007BFF;">gap analysis and MITRE ATT&CK threat modeling</span>, as well as crafting detection analytics in the practice of <span style="color: #007BFF;">detection-as-code</span> using widely supported open-source projects like <span style="color: #007BFF;">Sigma Rules</span>, a YARA-like language designed to be SIEM vendor agnostic.
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kevin Hyun Woo Kim</h1>
+                <p class="subtitle">Senior Threat Detection Engineer & Security Data Platform Architect</p>
+                <p class="description">
+                    Building enterprise-scale security data platforms using data lakehouse architecture. Architecting ETL pipelines, 
+                    detection analytics with PySpark and SQL, and ML-driven threat detection. Previously built detection engineering 
+                    programs for multiple clients and architected complete corporate security stacks in FedRAMP environments.
+                </p>
+                <div class="hero-buttons">
+                    <a href="mailto:hyunwoo1124@gmail.com" class="cta-button">Get in Touch</a>
+                    <a href="https://drive.google.com/file/d/1g8AkRjnAh9DedcqO3E8NrfR3-ww-ZQYX/view?usp=sharing" class="cta-button secondary" target="_blank">Resume</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hyunwoo777/" target="_blank" class="social-link" title="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/hyunwoo1124" target="_blank" class="social-link" title="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        Additionally, I specialize in assessing emerging threats and taking proactive actions to map their <span style="color: #007BFF;">Tactics, Techniques, and Procedures (TTPs)</span> in order to create effective detections.
-                        
-                        </strong></p>
-                   
-                    <h2>Previously at Epirus...</h2>
-                    <p><strong>I am a cybersecurity professional with a proven track record in architecting and implementing <span style="color: #007BFF;">advanced cybersecurity solutions</span> for startups across domains such as <span style="color: #007BFF;">Security Operations, Security Engineering, Detection Analytics, corporate security, and security architecture</span>. I excel in fast-paced startup environments, implementing modern security solutions, industry best practices, and emerging trends. I lead by influence and empathize with user experiences while spearheading the design of security architecture. I am exceptional in communicating with stakeholders and C-suite executives to align security initiatives with organizational goals, milestones, and fostering a strong security culture.
-                    </strong></p>
-                    <p>Some notable examples of my key highlight projects include:</p>
-                    <ul>
-                        <li>Architected and executed a <span style="color: #007BFF;">three-year strategy</span> for a defense startup by deploying a <span style="color: #007BFF;">robust cybersecurity program</span>, catering to the needs of <span style="color: #007BFF;">250+ employees</span> and securing over <span style="color: #007BFF;">400+ workstations</span>. I orchestrated the implementation of <span style="color: #007BFF;">EDR, MDM, SASE, UEBA, DLP, VM, PAM, Azure AD, Conditional Access, MDM, and SIEM tools</span>, enhancing their effectiveness through tailored detection analytics to fortify cyber defense capabilities.
-                        </li>
-                        <br>
-                        <li>
-                            Contributed to the development of a <span style="color: #007BFF;">ticketing system</span>, resulting in a <span style="color: #007BFF;">50% reduction in Mean-Time-To-Response(MTTR)</span> and a <span style="color: #007BFF;">70% reduction in Mean-Time-To-Detect</span> incidents. This was achieved by creating a single-pane dashboard using the Tines <span style="color: #007BFF;">Security Orchestation, Automation and Response(SOAR)</span> platform, prioritizing alert tuning through <span style="color: #007BFF;">API</span>, and customizing the <span style="color: #007BFF;">detection pipeline</span>.
-                        </li>
-                        <br>
-                        <li>Presented <span style="color: #007BFF;">Cybersecurity roadmap</span> and reported to C-Suite executives by creating <span style="color: #007BFF;">quarterly objective</span> and security program readiness with a budget of 1.2M dollars. I facilitated strategic decisions and ensured <span style="color: #007BFF;">alignment with organizational goals and compliance requirements</span>.
-                        </li>
-                    </ul>
-                
-                    <p><strong>I'm enthusiastic about roles that enables me and the autonomy to solve complex challenges and working with individuals like yourself.</strong></p>
-                
-                    <p><strong>I am passionate about connecting with new people and welcome the opportunity to connect with you. You can reach me at <span style="color: #007BFF;">hyunwoo1124@gmail.com</span>.</strong></p>
-                </body>
-                
-
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience</h2>
             
-             <div id="currentObj">
-                <h1>Objectives.</h1>
-                My intention is to immerse myself in learning and adapting to modern technology, with a specific focus on creating robust security measures. My goal is to stay informed and educated on emerging trends such as generative AI and large language models (LLMs). I believe that cybersecurity will play a critical role in safeguarding these advancements and ensuring their responsible use.             <div id="certificates">
-                <h1>Certification.</h1>
-                <ul>
-                    <li>
-                        CLF-C02 AWS Cloud Practitioner
-                    </li>
-                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="9edaef9d-ddce-424d-81d5-f091ae86db7c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                    </br>
-                    <li>
-                        Foundations of Breach & Attack Simulation
-                    </li>
-                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="09e8a7d3-e081-42f2-a086-af28a83ab0a1" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                    <li>
-                        AZ-900 Azure Fundamentals
-                    </li>
-                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="03faf8ee-205e-497a-a2ab-bbf6e1a29bc8" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                    </br>
-                    <li>
-                        Databricks Lakehouse Fundamentals
-                   </li>
-                   <div>
-                    <a href="https://credentials.databricks.com/683a3fa9-0248-42ac-9fac-88b8a344a6ff#gs.x6ddfi"><button class="btn_one">Certificate</button></a>
-                </div>
-                    <li>
-                        CompTIA Security+
-                    </li>
-                    <br>
-                    <div>
-                        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="9017e515-beb5-4f27-9c03-331185770125" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-                    </div>
-                    <li>
-                        Splunk Certified Core User
-                    </li>
-                    <br>
-                    
-                    
-                    <li>
-                        MITRE ATT&CK Defender (MAD) ATT&CK Fundamentals Training
-                   </li>
-                   <div>
-                       <a href="https://app.cybrary.it/courses/api/certificate/CC-c1cecdf9-9bf9-4164-ba65-3d4ba1faf0ef/view"><button class="btn_one">Certificate</button></a>
-                   </div>
-                    <li>
-                         MITRE ATT&CK Defender (MAD) ATT&CK SOC Assessments Certification Training
-                    </li>
-                    <div>
-                        <a href="https://app.cybrary.it/courses/api/certificate/CC-833f30c1-2f4e-4c6d-be40-91ea9e77b427/view"><button class="btn_one">Certificate</button></a>
-                    </div>
-                    <li>
-                        MITRE ATT&CK Defender (MAD) ATT&CK Cyber Threat Intelligence Certification Training
-                    </li>
-                    <div>
-                        <a href="https://app.cybrary.it/courses/api/certificate/CC-984fa2f1-1131-4d72-8938-66a89825fb6d/view"><button class="btn_one">Certificate</button></a>
-                    </div>
-                    
-                    
-                    
-                    <li>
-                        Google Cloud Platform Fundamentals: Core Infrastructure
-                    </li>
-                    <div>
-                        <a href="https://drive.google.com/drive/folders/1_wlOlhYIAkXYBo4VQqozhAA_-Sn1Jrkj?usp=sharing"><button class="btn_one">Certificate</button></a>
-                    </div>
-                    
+            <div class="experience-card fade-in">
+                <h3>Senior Threat Detection Engineer</h3>
+                <p class="experience-meta">Celonis · Nov 2024 - Present</p>
+                <p>
+                    Building an enterprise-scale security data platform using data lakehouse architecture to transform detection engineering 
+                    capabilities. Owning the complete ETL pipeline for multi-source data ingestion and implementing detection analytics using 
+                    PySpark and SQL with integrated ML capabilities for advanced threat detection.
+                </p>
+                <ul class="highlight-list">
+                    <li>Architecting scalable data lakehouse infrastructure for centralized security data processing and analytics</li>
+                    <li>Developing high-performance ETL pipelines using PySpark for real-time and batch threat detection workloads</li>
+                    <li>Building ML-driven detection models to enhance threat identification and reduce analyst workload</li>
+                    <li>Creating SQL-based detection logic optimized for large-scale data processing environments</li>
                 </ul>
-                
+            </div>
+
+            <div class="experience-card fade-in">
+                <h3>Threat Detection Engineer II</h3>
+                <p class="experience-meta">DeepSeas · Dec 2023 - Nov 2024 · Remote</p>
+                <p>
+                    Forward-deployed detection engineer embedded within client environments to mature detection engineering programs from the ground up. 
+                    Established structured detection lifecycle frameworks enabling scalable content development and continuous improvement.
+                </p>
+                <ul class="highlight-list">
+                    <li>Designed and implemented detection-as-code pipelines using Sigma rules with automated validation via Atomic Red Team</li>
+                    <li>Built Python-based tooling to streamline detection logic deployment, achieving measurable coverage improvement and reproducible, version-controlled detections</li>
+                    <li>Conducted gap analyses and MITRE ATT&CK threat modeling to prioritize coverage areas and enhance operational readiness</li>
+                    <li>Introduced Kanban workflows and structured communication channels across detection, threat intel, and incident response teams</li>
+                    <li>Presented detection maturity metrics and roadmap updates to VPs and CISO, guiding strategic security decisions</li>
+                </ul>
+            </div>
+
+            <div class="experience-card fade-in">
+                <h3>Security Engineer (Founding Engineer)</h3>
+                <p class="experience-meta">Epirus · Apr 2021 - Dec 2023 · 2 yrs 9 mos · Torrance, CA (Hybrid)</p>
+                <p>
+                    First security team member at Epirus, architecting the entire corporate security program from zero to production. 
+                    Built automation-driven security foundations for a fast-growing defense technology startup while supporting FedRAMP compliance efforts.
+                </p>
+                <ul class="highlight-list">
+                    <li>Architected complete corporate security stack including Microsoft Intune MDM, EDR, DLP, Conditional Access, and SIEM for 250+ employees and 400+ endpoints</li>
+                    <li>Established Zero Trust framework unifying endpoint security, device compliance, and user access control across hybrid environments</li>
+                    <li>Integrated multiple data sources and threat intelligence feeds into SIEM, achieving 85% true positive rate and 35% reduction in false positives through iterative tuning</li>
+                    <li>Spearheaded R&D of security data-lake architecture using Microsoft Sentinel and Azure Data Lake Storage (ADLS) for advanced threat-hunting and Python/Jupyter analytics</li>
+                    <li>Supported FedRAMP compliance by defining security controls, governance frameworks, and technical architecture meeting federal cloud security requirements</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objective Section -->
+    <section id="objective">
+        <div class="container">
+            <h2 class="section-title fade-in">Objective</h2>
+            <div class="objectives-content fade-in">
+                <p>
+                    My focus is on building scalable security data platforms that empower organizations to detect and respond to threats 
+                    more effectively. By leveraging data lakehouse architecture, advanced ETL pipelines, and machine learning capabilities, 
+                    I aim to create detection engineering programs that scale with organizational growth while maintaining high fidelity and 
+                    operational efficiency. I'm particularly passionate about bridging the gap between security operations and data engineering, 
+                    enabling teams to harness the full potential of their security telemetry through automation, analytics, and ML-driven insights.
+                </p>
+            </div>
+        </div>
+    </section>
+
+<!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3>Sigma Rules Conversion Platform</h3>
+                    <p>
+                        Leveraging SigmAIQ to convert Sigma rules to any supported SIEM language, enabling detection-as-code practices 
+                        across multiple platforms. Standardizing detection logic for vendor-agnostic threat detection at scale.
+                    </p>
+                    <a href="https://github.com/hyunwoo1124/Sigma_conversion_to_all" target="_blank" class="project-link">View Project →</a>
                 </div>
-              <div id="work">
-                 <h1>Project.</h1>
 
-                 <div class="project">
-
-                <h2>Sigma Rules Conversion to All</h2>
-                <div>visualize the power of Sigma Rules empowered by SigmAIQ to convert them to the supported SIEM language of your choice. This project also aims to standardize Detection-as-Code (DAC) practices.</div>
-                <a href="https://github.com/hyunwoo1124/Sigma_conversion_to_all"><button class="btn_one">visit project</button></a>
-
-                <h2>VirusTotal API Script</h2>
-                <div>Utilized VirusTotal APIs to create a script to classify URL/domain as undetected, harmless, and malicious from 70+ engines</div>
-                <a href="https://github.com/hyunwoo1124/API_VirusTotal"><button class="btn_one">visit project</button></a>
-
-                <h2>Tenable Vulnerability Management Diagram</h2>
-                <div>Demonstrated a Tenable Vulnerability Architecture Management diagram that optimizes visibility of vulnerabilities in on-premises and cloud solutions. </div>
-                    <a href="https://github.com/hyunwoo1124/Tenable-Architecture"><button class="btn_one">visit project</button></a>
-   
-                
-
-                <h2>Cybersecurity Lab</h2>
-                <div>I created a Detection environment using Chris Long's DetectionLab. This lab is designed to detect Tactics, Techniques, and Procedures (TTPs) by simulating Atomic Red Team using Splunk, osquery, Windows Event Forwarder, Sysmon, and more.</div>                <br>
-
-                 
-                 <h2>MAC Changer</h2>
-                 <div>Developed a python script that utilizes subprocesses to change and modify MAC addresses, incorporating optparse to validate user input with a focus on security.</div>
-                 <a href="https://github.com/hyunwoo1124/MAC_Changer.py"><button class="btn_one">visit project</button></a>
-                 <a href ="https://github.com/hyunwoo1124/MAC_Changer.py/blob/master/macChanger.py"><button class="btn_two">code</button></a>
-
+                <div class="project-card fade-in">
+                    <h3>VirusTotal API Intelligence Script</h3>
+                    <p>
+                        Automated threat intelligence enrichment using VirusTotal APIs to classify URLs and domains across 70+ security 
+                        engines. Categorizing threats as undetected, harmless, or malicious for rapid IOC validation.
+                    </p>
+                    <a href="https://github.com/hyunwoo1124/API_VirusTotal" target="_blank" class="project-link">View Project →</a>
                 </div>
 
-                <div class="project">
-                 <h2>Machine Learning Malicious URL Analyzer</h2>
-                 <div>I led the development of a machine learning malicious URL analyzer and conceptualized analytics using seaborn and matplotlib. I applied linear regression and multinomial naive bayes techniques to predict and analyze URLs, using a sample of 60K CSV URLs to determine the precision and accuracy of each module. To achieve this, I utilized count vectorizer and tfidf-vectorizer.
-                 </div>
-                 <a href = "https://github.com/hyunwoo1124/MLMaliciousURL"><button class="btn_one">visit project</button></a>
-
-                </div>
-                <div class="project">
-                    <h2>Malware Analysis</h2>
-                    <div>I have identified the type of malware and assessed current anti-virus detection capabilities. I have also examined the malware's functionality to determine dependencies and provided incident recommendations based on my analysis. This included performing snapshots for both static and dynamic analysis.
-                    </div>
+                <div class="project-card fade-in">
+                    <h3>Detection Engineering Lab</h3>
+                    <p>
+                        Built a comprehensive detection environment using DetectionLab to validate TTPs through Atomic Red Team simulations. 
+                        Integrated Splunk, osquery, Windows Event Forwarder, and Sysmon for full-spectrum detection testing and tuning.
+                    </p>
                 </div>
 
-                <div class="project">
-                    <h2>Many more...</h2> 
-                    <div>More projects in github repositories</div>
+                <div class="project-card fade-in">
+                    <h3>ML-Powered Malicious URL Analyzer</h3>
+                    <p>
+                        Developed a machine learning model using linear regression and multinomial naive bayes to predict malicious URLs. 
+                        Trained on 60K samples with count vectorizer and tfidf-vectorizer, visualized analytics using seaborn and matplotlib.
+                    </p>
+                    <a href="https://github.com/hyunwoo1124/MLMaliciousURL" target="_blank" class="project-link">View Project →</a>
                 </div>
-                <a href="https://github.com/hyunwoo1124"><button class="btn_one">visit github</button></a>
+            </div>
+        </div>
+    </section>
 
-                <div id="ctf">
-                    <h1>CTF</h1>
-   
-                    <div class="ctf">
-                    <h2>Kioptrix Level 1</h2>
-                    <div>Full-walkthrough of Kioptrix Level1 Pentest </div>
-                       <a href="https://github.com/hyunwoo1124/CTF-Write-Ups/blob/main/1.1%20Kioptrix%20Writeup.pdf"><button class="btn_one">visit project</button></a>
-                    <h2>Blue </h2>
-                    <div>Full-walkthrough of blue Pentest</div>
-                        <a href="https://github.com/hyunwoo1124/CTF-Write-Ups/blob/main/1.2%20Blue%20Writeup.pdf"><button class="btn_one">visit project</button></a>
-                    <h2>Academy </h2>
-                    <div>Full-walkthrough of academy Pentest</div>
-                        <a href="https://github.com/hyunwoo1124/CTF-Write-Ups/blob/main/1.3%20Academy%20Writeup.pdf"><button class="btn_one">visit project</button></a>
-      
-                   
-           
-             <div id="contact">
-                 <h1>Contact.</h1>
-                 <h2>Email</h2>
-                 <ul>
-                     <li>
-                        hyunwoo1124@gmail.com
-                     </li>
-                 </ul>
-                 
-                 </ul>
-                
-             </div>
-        
-    </div>
-    <div id="footer">
-       Hyun Woo's Portfolio <br><br> <a href="https://imfunniee.github.io">Credits to Fimbo Web pages</a>
-    </div>
-<script src="index.js" type="text/javascript"></script>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <p>© 2024 Kevin Hyun Woo Kim. Building scalable security platforms and detection engineering programs.</p>
+            <p>Reach me at <a href="mailto:hyunwoo1124@gmail.com" style="color: #3b82f6;">hyunwoo1124@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
